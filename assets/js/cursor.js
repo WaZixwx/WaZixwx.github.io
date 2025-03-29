@@ -23,6 +23,34 @@
         cursorDot.style.opacity = '0';
         cursorOutline.style.opacity = '0';
         
+        // 在开场动画期间隐藏鼠标指针
+        const introAnimationElement = document.querySelector('.intro-animation');
+        if (introAnimationElement) {
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.attributeName === 'class') {
+                        // 当开场动画开始时
+                        if (introAnimationElement.classList.contains('active')) {
+                            // 确保鼠标指针隐藏
+                            cursorDot.style.opacity = '0';
+                            cursorOutline.style.opacity = '0';
+                        }
+                        
+                        // 当开场动画结束时
+                        if (introAnimationElement.classList.contains('exit')) {
+                            // 显示鼠标指针
+                            setTimeout(() => {
+                                cursorDot.style.opacity = '1';
+                                cursorOutline.style.opacity = '1';
+                            }, 500);
+                        }
+                    }
+                });
+            });
+            
+            // 开始观察intro-animation元素的class变化
+            observer.observe(introAnimationElement, { attributes: true });
+        }
         // 鼠标位置变量
         let mouseX = 0;
         let mouseY = 0;
@@ -110,6 +138,7 @@
         
         // 页面加载完成后显示鼠标
         setTimeout(() => {
+            // 显示完整鼠标（包括dot和outline）
             cursorDot.style.opacity = '';
             cursorOutline.style.opacity = '';
         }, 1000);

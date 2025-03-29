@@ -22,6 +22,7 @@
         initFormEvents();
         initSectionAnimation();
         initBiliBiliIcon();
+        initTypewriterEffect();
         setCurrentYear();
         
         // 确保DOM已加载完成后再设置交互元素
@@ -35,39 +36,41 @@
      */
     function initLoader() {
         const loaderWrapper = document.querySelector('.loader-wrapper');
+        const introAnimation = document.querySelector('.intro-animation');
         
-        // 检查是否有加载器
-        if (!loaderWrapper) return;
+        if (!loaderWrapper || !introAnimation) return;
         
-        // 模拟加载进度
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += Math.random() * 10;
-            if (progress >= 100) {
-                clearInterval(interval);
-                
-                // 页面加载完成，隐藏加载器
-                setTimeout(() => {
-                    loaderWrapper.classList.add('fade-out');
-                    
-                    // 移除加载器并开始开场动画
-                    setTimeout(() => {
-                        loaderWrapper.remove();
-                        
-                        // 确保英雄部分默认不可见
-                        const heroSection = document.querySelector('.hero-section');
-                        if (heroSection) {
-                            heroSection.style.opacity = '0';
-                        }
-                        
-                        // 触发开场动画
-                        if (typeof window.startIntroAnimation === 'function') {
-                            window.startIntroAnimation();
-                        }
-                    }, 600);
-                }, 500);
+        // 页面加载完成后触发开场动画
+        window.addEventListener('load', () => {
+            // 显示加载完成状态
+            const loadingStatus = document.querySelector('.loading-status');
+            if (loadingStatus) {
+                loadingStatus.textContent = '加载完成';
             }
-        }, 200);
+            
+            // 0.8秒后淡出加载器
+            setTimeout(() => {
+                loaderWrapper.style.opacity = '0';
+                loaderWrapper.style.pointerEvents = 'none';
+                
+                // 加载器完全淡出后开始开场动画
+                setTimeout(() => {
+                    loaderWrapper.style.display = 'none';
+                    
+                    // 确保触发开场动画
+                    if (typeof window.startIntroAnimation === 'function') {
+                        window.startIntroAnimation();
+                    }
+                }, 800);
+            }, 800);
+        });
+        
+        // 备用方案：如果加载很快，确保也能触发开场动画
+        if (document.readyState === 'complete') {
+            if (typeof window.startIntroAnimation === 'function') {
+                window.startIntroAnimation();
+            }
+        }
     }
     
     /**
@@ -450,6 +453,45 @@
         });
     }
     
+    /**
+     * 初始化打字机效果
+     */
+    function initTypewriterEffect() {
+        const typewriterElements = document.querySelectorAll('.typewriter');
+        
+        typewriterElements.forEach(element => {
+            // 保存原始文本
+            const text = element.textContent;
+            // 清空元素内容
+            element.textContent = '';
+            // 先将宽度设为0
+            element.style.width = 'fit-content';
+            
+            // 创建一个观察器来检测元素是否在视口中
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // 如果元素在视口中并且尚未开始动画
+                    if (entry.isIntersecting && !element.dataset.animated) {
+                        element.dataset.animated = 'true';
+                        
+                        // 一个字一个字地输入文本
+                        let i = 0;
+                        const typeInterval = setInterval(() => {
+                            if (i < text.length) {
+                                element.textContent += text.charAt(i);
+                                i++;
+                            } else {
+                                clearInterval(typeInterval);
+                            }
+                        }, 100); // 每100ms输入一个字符
+                    }
+                });
+            }, { threshold: 0.1 }); // 当元素10%可见时触发
+            
+            // 开始观察元素
+            observer.observe(element);
+        });
+    }
     
     /**
      * 设置当前年份
