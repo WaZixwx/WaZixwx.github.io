@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaZixwx | 个人主页</title>
+    <meta name="description" content="WaZixwx的个人主页 - 探索创意、技术与艺术的交融">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+XiaoWei&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- 图标 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css">
+    <!-- 备用图标CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- 样式 -->
+    <link rel="stylesheet" href="assets/css/loader.css">
+    <link rel="stylesheet" href="assets/css/cursor.css">
+    <link rel="stylesheet" href="assets/css/intro-animation.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- 预加载 -->
+    <link rel="preload" href="https://q.qlogo.cn/g?b=qq&nk=2873423857&s=640" as="image">
+</head>
+<body>
+    <!-- 页面加载动画 -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="loader-inner"></div>
+        </div>
+        <div class="loader-text">
+            <span class="glitch-text" data-text="WaZixwx">WaZixwx</span>
+            <p class="loading-status">加载中<span class="dots">···</span></p>
+        </div>
+    </div>
+
+    <!-- 开场动画 -->
+    <div class="intro-animation">
+        <div class="intro-overlay"></div>
+        <div class="intro-content">
+            <div class="intro-grid">
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+            </div>
+            <div class="intro-shapes">
+                <div class="shape circle"></div>
+                <div class="shape triangle"></div>
+                <div class="shape square"></div>
+                <div class="shape hexagon"></div>
+            </div>
+            <div class="intro-text">
+                <div class="text-line">创意</div>
+                <div class="text-line">技术</div>
+                <div class="text-line">艺术</div>
+                <div class="text-logo">WaZixwx</div>
+                <div class="text-tagline">探索无限可能</div>
+            </div>
+            <div class="intro-lines">
+                <div class="line-container">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 自定义鼠标 -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    
+    <!-- 导航 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#" class="glitch-text" data-text="WaZixwx">WaZixwx</a>
+            </div>
+            <div class="nav-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link"><i class="fas fa-home"></i> 首页</a></li>
+                <li><a href="#about" class="nav-link"><i class="fas fa-user"></i> 关于</a></li>
+                <li><a href="#works" class="nav-link"><i class="fas fa-code"></i> 作品</a></li>
+                <li><a href="#tools" class="nav-link"><i class="fas fa-tools"></i> 工具</a></li>
+                <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> 联系</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 主页部分 -->
+    <section id="home" class="hero-section">
+        <div class="parallax-bg"></div>
+        <div class="hero-content">
+            <div class="avatar-container">
+                <div class="avatar-glow"></div>
+                <img src="https://q.qlogo.cn/g?b=qq&nk=2873423857&s=640" alt="头像" class="avatar">
+            </div>
+            <h1 class="hero-title">
+                <span class="glitch-text" data-text="WaZixwx">WaZixwx</span>
+            </h1>
+            <p class="hero-subtitle typewriter">创意 · 技术 · 探索</p>
+            <div class="hero-links">
+                <a href="https://github.com/WaZixwx" class="social-link github" aria-label="GitHub" data-tooltip="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://space.bilibili.com/3493087873600382" class="social-link bilibili" aria-label="Bilibili" data-tooltip="Bilibili">
+                    <i class="fab fa-bilibili"></i>
+                </a>
+                <a href="#contact" class="cta-button">联系我</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <p>向下滚动探索更多</p>
+        </div>
+    </section>
+    
+    <!-- 关于部分 -->
+    <section id="about" class="about-section">
+        <div class="section-container">
+            <h2 class="section-title">关于我</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">我是一位热爱创造和技术的开发者，致力于探索数字世界的无限可能。我相信技术不仅是工具，更是实现创意的桥梁。</p>
+                    <div class="skills-container">
+                        <h3>擅长技能</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item" data-skill="Web开发">
+                                <i class="fas fa-code"></i>
+                                <span>Web开发</span>
+                                <div class="skill-level" style="width: 95%;"></div>
+                            </div>
+                            <div class="skill-item" data-skill="UI/UX设计">
+                                <i class="fas fa-palette"></i>
+                                <span>UI/UX设计</span>
+                                <div class="skill-level" style="width: 85%;"></div>
+                            </div>
+                            <div class="skill-item" data-skill="前端开发">
+                                <i class="fab fa-js"></i>
+                                <span>前端开发</span>
+                                <div class="skill-level" style="width: 90%;"></div>
+                            </div>
+                            <div class="skill-item" data-skill="创意编程">
+                                <i class="fas fa-brain"></i>
+                                <span>创意编程</span>
+                                <div class="skill-level" style="width: 88%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="floating-shape shape-1"></div>
+                    <div class="floating-shape shape-2"></div>
+                    <div class="floating-shape shape-3"></div>
+                    <div class="glass-card">
+                        <div class="card-content">
+                            <h3 class="card-title">探索 · 创新 · 分享</h3>
+                            <p class="card-text">每一个项目都是一次全新的冒险，每一行代码都有着无限的可能性。</p>
+                            <a href="#works" class="card-button">查看我的作品</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 作品部分 -->
+    <section id="works" class="works-section">
+        <div class="section-container">
+            <h2 class="section-title">精选作品</h2>
+            <div class="works-grid">
+                <div class="work-card">
+                    <div class="work-image">
+                        <img src="assets/img/work1.jpg" alt="作品1" loading="lazy">
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">创意项目名称</h3>
+                        <p class="work-description">这是一个创意项目的简短描述，展示了项目的主要特点和亮点。</p>
+                        <div class="work-tags">
+                            <span class="tag">Web</span>
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS3</span>
+                        </div>
+                        <a href="#" class="work-link">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="work-card">
+                    <div class="work-image">
+                        <img src="assets/img/work2.jpg" alt="作品2" loading="lazy">
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">技术项目名称</h3>
+                        <p class="work-description">这是一个技术项目的简短描述，展示了项目的主要特点和亮点。</p>
+                        <div class="work-tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                        </div>
+                        <a href="#" class="work-link">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="work-card">
+                    <div class="work-image">
+                        <img src="assets/img/work3.jpg" alt="作品3" loading="lazy">
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">设计项目名称</h3>
+                        <p class="work-description">这是一个设计项目的简短描述，展示了项目的主要特点和亮点。</p>
+                        <div class="work-tags">
+                            <span class="tag">UI设计</span>
+                            <span class="tag">Figma</span>
+                            <span class="tag">动效</span>
+                        </div>
+                        <a href="#" class="work-link">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 工具部分 -->
+    <section id="tools" class="tools-section">
+        <div class="section-container">
+            <h2 class="section-title">在线工具</h2>
+            <div class="tools-grid">
+                <a href="921img/index.html" class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3 class="tool-title">九宫格图片合成</h3>
+                    <p class="tool-description">将九张图片无缝合成为一张，完美适配社交媒体分享。</p>
+                    <span class="tool-cta">立即使用 <i class="fas fa-arrow-right"></i></span>
+                </a>
+                
+                <a href="rili/index.html" class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="tool-title">日程表</h3>
+                    <p class="tool-description">高效管理您的日程安排，简单直观的日历工具。</p>
+                    <span class="tool-cta">立即使用 <i class="fas fa-arrow-right"></i></span>
+                </a>
+                
+                <a href="music/index.html" class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="tool-title">音乐播放器</h3>
+                    <p class="tool-description">精美的音乐播放器，享受高品质的音乐体验。</p>
+                    <span class="tool-cta">立即使用 <i class="fas fa-arrow-right"></i></span>
+                </a>
+                
+                <div class="tool-card coming-soon">
+                    <div class="tool-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="tool-title">敬请期待</h3>
+                    <p class="tool-description">更多精彩工具正在开发中，敬请期待！</p>
+                    <span class="tool-cta">即将推出 <i class="fas fa-clock"></i></span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 联系部分 -->
+    <section id="contact" class="contact-section">
+        <div class="section-container">
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-content">
+                <div class="contact-form-container">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">您的名字</label>
+                            <input type="text" id="name" name="name" required>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">邮箱地址</label>
+                            <input type="email" id="email" name="email" required>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">留言内容</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <div class="form-line"></div>
+                        </div>
+                        <button type="submit" class="submit-button">
+                            <span class="button-text">发送消息</span>
+                            <span class="button-icon"><i class="fas fa-paper-plane"></i></span>
+                        </button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-card-inner">
+                            <div class="contact-links">
+                                <a href="https://github.com/WaZixwx" class="contact-link">
+                                    <i class="fab fa-github"></i>
+                                    <span>GitHub</span>
+                                </a>
+                                <a href="https://space.bilibili.com/3493087873600382" class="contact-link">
+                                    <i class="fab fa-bilibili"></i>
+                                    <span>Bilibili</span>
+                                </a>
+                                <a href="mailto:contact@example.com" class="contact-link">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Email</span>
+                                </a>
+                            </div>
+                            <div class="contact-note">
+                                <p>"无论您有什么想法或建议，都可以随时与我联系。期待与您的交流！"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="glitch-text" data-text="WaZixwx">WaZixwx</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">首页</a>
+                    <a href="#about">关于</a>
+                    <a href="#works">作品</a>
+                    <a href="#tools">工具</a>
+                    <a href="#contact">联系</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> WaZixwx. All Rights Reserved.</p>
+                <div class="footer-social">
+                    <a href="https://github.com/WaZixwx"><i class="fab fa-github"></i></a>
+                    <a href="https://space.bilibili.com/3493087873600382"><i class="fab fa-bilibili"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- 彩蛋按钮 -->
+    <div class="easter-egg-trigger">
+        <i class="fas fa-gift"></i>
+    </div>
+    
+    <!-- 彩蛋模态框 -->
+    <div class="easter-egg-modal">
+        <div class="easter-egg-content">
+            <button class="close-modal"><i class="fas fa-times"></i></button>
+            <h3>你发现了一个彩蛋！</h3>
+            <div class="easter-egg-game">
+                <canvas id="game-canvas"></canvas>
+                <div class="game-controls">
+                    <button id="game-start">开始游戏</button>
+                    <div class="game-score">分数: <span id="score">0</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 回到顶部 -->
+    <button class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- 主题切换器 -->
+    <div class="theme-switcher">
+        <button class="theme-button" aria-label="切换主题">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+    
+    <!-- 脚本 -->
+    <script src="assets/js/cursor.js"></script>
+    <script src="assets/js/glitch.js"></script>
+    <script src="assets/js/parallax.js"></script>
+    <script src="assets/js/intro-animation.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

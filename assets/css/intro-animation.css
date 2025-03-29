@@ -1,0 +1,612 @@
+/* 开场动画样式 */
+.intro-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro-animation.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.intro-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 12, 41, 0.1);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* 添加点阵背景 */
+.intro-overlay:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards;
+    animation-delay: 0.5s;
+}
+
+.intro-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* 网格线动画 */
+.intro-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    opacity: 0.15;
+    overflow: hidden;
+}
+
+.grid-line {
+    position: relative;
+    overflow: hidden;
+}
+
+.grid-line::before, .grid-line::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.grid-line::before {
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    transform: scaleY(0);
+    transform-origin: top;
+}
+
+.grid-line::after {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+/* 增强的网格线边缘效果 */
+.grid-line.grid-top::after {
+    background: linear-gradient(90deg, rgba(118, 74, 241, 0.7), rgba(255, 82, 159, 0.7));
+    height: 2px;
+    box-shadow: 0 0 10px rgba(118, 74, 241, 0.5);
+}
+
+.grid-line.grid-left::before {
+    background: linear-gradient(180deg, rgba(76, 217, 105, 0.7), rgba(52, 170, 220, 0.7));
+    width: 2px;
+    box-shadow: 0 0 10px rgba(76, 217, 105, 0.5);
+}
+
+.grid-line.grid-bottom::after {
+    background: linear-gradient(90deg, rgba(255, 184, 108, 0.7), rgba(255, 124, 139, 0.7));
+    height: 2px;
+    box-shadow: 0 0 10px rgba(255, 184, 108, 0.5);
+}
+
+.grid-line.grid-right::before {
+    background: linear-gradient(180deg, rgba(111, 219, 255, 0.7), rgba(118, 74, 241, 0.7));
+    width: 2px;
+    box-shadow: 0 0 10px rgba(111, 219, 255, 0.5);
+}
+
+.intro-animation.active .grid-line::before {
+    animation: gridLineVertical 0.6s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    animation-delay: calc(0.05s * var(--index, 0));
+}
+
+.intro-animation.active .grid-line::after {
+    animation: gridLineHorizontal 0.6s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    animation-delay: calc(0.05s * var(--index, 0) + 0.2s);
+}
+
+@keyframes gridLineVertical {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+}
+
+@keyframes gridLineHorizontal {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+/* 形状动画 */
+.intro-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    opacity: 0;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+    transition: all 0.3s ease;
+}
+
+.shape.circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    top: 25%;
+    left: 15%;
+    background: linear-gradient(45deg, rgba(255, 82, 159, 0.1), rgba(118, 74, 241, 0.1));
+    border-color: rgba(255, 82, 159, 0.3);
+}
+
+.shape.triangle {
+    width: 0;
+    height: 0;
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-bottom: 140px solid rgba(111, 219, 255, 0.1);
+    background: transparent;
+    top: 60%;
+    right: 15%;
+}
+
+.shape.square {
+    width: 100px;
+    height: 100px;
+    bottom: 15%;
+    left: 25%;
+    background: linear-gradient(135deg, rgba(76, 217, 105, 0.1), rgba(52, 170, 220, 0.1));
+    border-color: rgba(76, 217, 105, 0.3);
+    transform: rotate(45deg);
+}
+
+.shape.hexagon {
+    width: 100px;
+    height: 57.7px;
+    top: 20%;
+    right: 20%;
+    background: linear-gradient(135deg, rgba(255, 184, 108, 0.1), rgba(255, 124, 139, 0.1));
+    border-color: rgba(255, 184, 108, 0.3);
+    position: absolute;
+    transform: rotate(30deg);
+}
+
+.shape.hexagon:before, .shape.hexagon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+}
+
+.shape.hexagon:before {
+    bottom: 100%;
+    border-bottom: 28.9px solid rgba(255, 184, 108, 0.1);
+}
+
+.shape.hexagon:after {
+    top: 100%;
+    width: 0;
+    border-top: 28.9px solid rgba(255, 184, 108, 0.1);
+}
+
+/* 增强的形状动画效果 */
+.intro-animation.active .shape {
+    animation: fadeInScale 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: var(--delay, 0.3s);
+}
+
+/* 形状悬浮动画 */
+.intro-animation.active .shape.circle {
+    animation: fadeInScale 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, float 6s ease-in-out infinite;
+    animation-delay: 0.3s, 1.3s;
+}
+
+.intro-animation.active .shape.triangle {
+    animation: fadeInScale 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, float 8s ease-in-out infinite;
+    animation-delay: 0.5s, 1.5s;
+}
+
+.intro-animation.active .shape.square {
+    animation: fadeInScale 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, float 7s ease-in-out infinite;
+    animation-delay: 0.7s, 1.7s;
+}
+
+.intro-animation.active .shape.hexagon {
+    animation: fadeInScale 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, float 9s ease-in-out infinite;
+    animation-delay: 0.9s, 1.9s;
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(var(--rotate, 0deg));
+    }
+    100% {
+        opacity: 0.8;
+        transform: scale(1) rotate(var(--rotate, 0deg));
+    }
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(var(--rotate, 0deg)); }
+    50% { transform: translateY(-15px) rotate(var(--rotate, 0deg)); }
+    100% { transform: translateY(0) rotate(var(--rotate, 0deg)); }
+}
+
+/* 文字动画 */
+.intro-text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'ZCOOL XiaoWei', 'Noto Sans SC', sans-serif;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.intro-animation.active .intro-text {
+    animation: fadeInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 1.2s;
+}
+
+.text-line {
+    font-size: 2rem;
+    line-height: 1.5;
+    font-weight: 300;
+    letter-spacing: 2px;
+    opacity: 0;
+    transform: translateY(20px);
+    position: relative;
+}
+
+/* 文字装饰线 */
+.text-line:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 50%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    transform: translateX(-50%);
+    transition: width 0.5s ease;
+}
+
+.intro-animation.active .text-line:after {
+    width: 80%;
+    transition-delay: 2s;
+}
+
+.intro-animation.active .text-line:nth-child(1) {
+    animation: fadeInText 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 1.3s;
+}
+
+.intro-animation.active .text-line:nth-child(2) {
+    animation: fadeInText 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 1.5s;
+}
+
+.intro-animation.active .text-line:nth-child(3) {
+    animation: fadeInText 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 1.7s;
+}
+
+.text-logo {
+    font-size: 5rem;
+    font-weight: 700;
+    margin: 2rem 0;
+    background: linear-gradient(135deg, #FF6B6B, #FFE66D, #4ECDC4, #7A89FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0;
+    transform: scale(0.8);
+    position: relative;
+}
+
+/* Logo光效 */
+.text-logo:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transform: scale(1.5);
+    z-index: -1;
+}
+
+.intro-animation.active .text-logo {
+    animation: glowPulse 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 2s;
+}
+
+.intro-animation.active .text-logo:before {
+    animation: logoGlow 3s ease-in-out infinite;
+    animation-delay: 2.5s;
+}
+
+@keyframes logoGlow {
+    0% { opacity: 0; transform: scale(1.5); }
+    50% { opacity: 0.3; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.5); }
+}
+
+.text-tagline {
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    opacity: 0;
+}
+
+.intro-animation.active .text-tagline {
+    animation: fadeInText 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 2.3s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glowPulse {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+        text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+}
+
+/* 线条动画 */
+.intro-lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.line-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.line {
+    position: absolute;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        rgba(255, 255, 255, 0.5), 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+    height: 1px;
+    width: 0%;
+    opacity: 0;
+}
+
+.line:nth-child(1) {
+    top: 20%;
+    left: 0;
+}
+
+.line:nth-child(2) {
+    top: 40%;
+    right: 0;
+}
+
+.line:nth-child(3) {
+    top: 60%;
+    left: 0;
+}
+
+.line:nth-child(4) {
+    top: 80%;
+    right: 0;
+}
+
+.line:nth-child(5) {
+    top: 50%;
+    left: 25%;
+    transform: rotate(30deg);
+    transform-origin: left center;
+}
+
+.intro-animation.active .line {
+    animation: lineExpand 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.intro-animation.active .line:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.intro-animation.active .line:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.intro-animation.active .line:nth-child(3) {
+    animation-delay: 0.7s;
+}
+
+.intro-animation.active .line:nth-child(4) {
+    animation-delay: 0.9s;
+}
+
+.intro-animation.active .line:nth-child(5) {
+    animation-delay: 1.1s;
+}
+
+@keyframes lineExpand {
+    0% {
+        width: 0%;
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        width: 100%;
+        opacity: 0.7;
+    }
+}
+
+/* 退出动画 */
+.intro-animation.exit {
+    animation: fadeOut 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    animation-delay: 4s;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* 为英雄部分添加入场动画 */
+.hero-section {
+    opacity: 0;
+}
+
+.hero-section.animate-in {
+    animation: heroFadeIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.hero-section.animate-in .avatar-container {
+    animation: bounceIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 0.3s;
+}
+
+.hero-section.animate-in .hero-title {
+    animation: slideInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 0.5s;
+}
+
+.hero-section.animate-in .hero-subtitle {
+    animation: slideInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 0.7s;
+}
+
+.hero-section.animate-in .hero-links {
+    animation: slideInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 0.9s;
+}
+
+.hero-section.animate-in .scroll-indicator {
+    animation: fadeIn 1s linear forwards;
+    animation-delay: 1.5s;
+}
+
+@keyframes heroFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    40% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    60% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

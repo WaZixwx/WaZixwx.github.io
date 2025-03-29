@@ -1,0 +1,147 @@
+/* 自定义鼠标样式优化 */
+html, body {
+    cursor: none;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform;
+}
+
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.2s ease, height 0.2s ease;
+    will-change: transform;
+}
+
+body:hover .cursor-dot,
+body:hover .cursor-outline {
+    opacity: 1;
+}
+
+/* 指针样式 - 加强所有可交互元素 */
+a, button, [role="button"], input, textarea, select, label, .clickable,
+.tool-card, .social-link, .work-card, .nav-link, .nav-toggle, .skill-item,
+.easter-egg-trigger, .back-to-top, .theme-button {
+    cursor: none !important;
+}
+
+/* 交互元素悬停效果 */
+a:hover ~ .cursor-dot,
+button:hover ~ .cursor-dot,
+[role="button"]:hover ~ .cursor-dot,
+input:hover ~ .cursor-dot,
+textarea:hover ~ .cursor-dot,
+select:hover ~ .cursor-dot,
+.clickable:hover ~ .cursor-dot {
+    transform: scale(1.5);
+    background-color: var(--primary-light);
+}
+
+a:hover ~ .cursor-outline,
+button:hover ~ .cursor-outline,
+[role="button"]:hover ~ .cursor-outline,
+input:hover ~ .cursor-outline,
+textarea:hover ~ .cursor-outline,
+select:hover ~ .cursor-outline,
+.clickable:hover ~ .cursor-outline {
+    transform: scale(0.8);
+    border-width: 3px;
+    background-color: rgba(var(--primary-rgb), 0.1);
+}
+
+/* 鼠标按下效果 */
+.cursor-dot.active {
+    transform: scale(1.8);
+    background-color: var(--accent);
+}
+
+.cursor-outline.active {
+    transform: scale(0.6);
+    border-color: var(--accent);
+    border-width: 3px;
+}
+
+/* 鼠标隐藏状态 */
+.cursor-dot.hidden,
+.cursor-outline.hidden {
+    opacity: 0 !important;
+}
+
+/* 针对特定元素的鼠标自定义 */
+.cta-button:hover ~ .cursor-dot,
+.submit-button:hover ~ .cursor-dot,
+.card-button:hover ~ .cursor-dot,
+.social-link:hover ~ .cursor-dot,
+.work-link:hover ~ .cursor-dot,
+.tool-card:hover ~ .cursor-dot,
+.easter-egg-trigger:hover ~ .cursor-dot,
+.back-to-top:hover ~ .cursor-dot,
+.theme-button:hover ~ .cursor-dot {
+    transform: scale(2);
+    background-color: var(--white);
+    mix-blend-mode: difference;
+}
+
+.cta-button:hover ~ .cursor-outline,
+.submit-button:hover ~ .cursor-outline,
+.card-button:hover ~ .cursor-outline,
+.social-link:hover ~ .cursor-outline,
+.work-link:hover ~ .cursor-outline,
+.tool-card:hover ~ .cursor-outline,
+.easter-egg-trigger:hover ~ .cursor-outline,
+.back-to-top:hover ~ .cursor-outline,
+.theme-button:hover ~ .cursor-outline {
+    transform: scale(1.2);
+    width: 60px;
+    height: 60px;
+    border-color: var(--primary);
+    opacity: 0.5;
+}
+
+/* 输入框焦点状态 */
+input:focus ~ .cursor-dot,
+textarea:focus ~ .cursor-dot {
+    transform: scale(1.5);
+    background-color: var(--accent);
+}
+
+input:focus ~ .cursor-outline,
+textarea:focus ~ .cursor-outline {
+    border-color: var(--accent);
+    transform: scale(0.8);
+}
+
+/* 不可点击元素 */
+.disabled:hover ~ .cursor-dot,
+[disabled]:hover ~ .cursor-dot,
+.tool-card.coming-soon:hover ~ .cursor-dot {
+    transform: scale(1.2);
+    background-color: var(--gray);
+}
+
+.disabled:hover ~ .cursor-outline,
+[disabled]:hover ~ .cursor-outline,
+.tool-card.coming-soon:hover ~ .cursor-outline {
+    transform: scale(0.9);
+    border-color: var(--gray);
+}
