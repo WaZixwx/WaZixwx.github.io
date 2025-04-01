@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP4音视频分离工具</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="title">MP4音视频分离工具</h1>
+            <p class="subtitle">纯浏览器端处理 · 完全无损 · 隐私安全</p>
+        </header>
+
+        <div class="upload-container" id="upload-container">
+            <div class="upload-area" id="drop-area">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3>拖放MP4文件到这里</h3>
+                <p>或</p>
+                <label for="file-input" class="file-input-label">
+                    <i class="fas fa-file-video"></i> 选择文件
+                </label>
+                <input type="file" id="file-input" accept=".mp4" hidden>
+                <p class="file-limits">支持MP4格式，文件大小不超过2GB</p>
+            </div>
+        </div>
+
+        <div class="processing-container" id="processing-container" style="display: none;">
+            <div class="file-info">
+                <div class="file-preview">
+                    <i class="fas fa-file-video"></i>
+                </div>
+                <div class="file-details">
+                    <h3 id="file-name">filename.mp4</h3>
+                    <p id="file-size">0 MB</p>
+                </div>
+                <button class="cancel-btn" id="cancel-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-status">
+                    <p id="progress-text">正在处理...</p>
+                    <p id="progress-percentage">0%</p>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+
+            <button class="process-btn" id="process-btn">
+                <i class="fas fa-cut"></i> 开始分离
+            </button>
+        </div>
+
+        <div class="result-container" id="result-container" style="display: none;">
+            <h2>分离完成</h2>
+            
+            <div class="result-files">
+                <div class="result-file video-file">
+                    <div class="file-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div class="file-info">
+                        <h3>视频文件</h3>
+                        <p id="video-file-info">filename_video.mp4</p>
+                    </div>
+                    <div class="file-actions">
+                        <button class="preview-btn" id="preview-video-btn">
+                            <i class="fas fa-play"></i> 预览
+                        </button>
+                        <button class="download-btn" id="download-video-btn">
+                            <i class="fas fa-download"></i> 下载
+                        </button>
+                    </div>
+                </div>
+
+                <div class="result-file audio-file">
+                    <div class="file-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="file-info">
+                        <h3>音频文件</h3>
+                        <p id="audio-file-info">filename_audio.mp3</p>
+                    </div>
+                    <div class="file-actions">
+                        <button class="preview-btn" id="preview-audio-btn">
+                            <i class="fas fa-play"></i> 预览
+                        </button>
+                        <button class="download-btn" id="download-audio-btn">
+                            <i class="fas fa-download"></i> 下载
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-all">
+                <button class="download-all-btn" id="download-all-btn">
+                    <i class="fas fa-file-archive"></i> 下载全部（压缩包）
+                </button>
+            </div>
+
+            <button class="new-task-btn" id="new-task-btn">
+                <i class="fas fa-plus"></i> 新任务
+            </button>
+        </div>
+
+        <div class="preview-modal" id="preview-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="preview-title">预览</h3>
+                    <button class="close-btn" id="close-preview-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <video id="video-player" controls style="display: none;"></video>
+                    <audio id="audio-player" controls style="display: none;"></audio>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 <a href="https://www.wazixwx.com">WaZixwx.com</a> | 纯浏览器技术 | 无服务器处理</p>
+    </footer>
+
+    <!-- 加载必要的脚本 -->
+    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html> 
