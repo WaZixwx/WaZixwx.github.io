@@ -7,12 +7,20 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Serif+JP:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <canvas id="bgCanvas" class="bg-canvas"></canvas>
 
     <div class="noise-overlay"></div>
+
+    <!-- 语言切换器 -->
+    <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn active" data-lang="zh" title="中文">中</button>
+        <button class="lang-btn" data-lang="en" title="English">EN</button>
+        <button class="lang-btn" data-lang="ja" title="日本語">日</button>
+        <button class="lang-btn" data-lang="ko" title="한국어">韩</button>
+    </div>
 
     <div class="loader" id="loader">
         <div class="loader-text">
@@ -41,10 +49,10 @@
                 </div>
                 <div class="profile-info">
                     <h1 class="name">
-                        <span class="name-main">WaZixwx</span>
+                        <span class="name-glitch" data-text="WaZixwx">WaZixwx</span>
                     </h1>
                     <p class="nickname">
-                        <span class="nickname-tag">袜子</span>
+                        <span class="nickname-tag" data-i18n="nickname">袜子</span>
                         <span class="nickname-emoji">🧦</span>
                     </p>
                     <div class="profile-divider">
@@ -59,18 +67,18 @@
             <section class="about-section">
                 <div class="section-header">
                     <span class="section-number">01</span>
-                    <h2 class="section-title">关于我</h2>
+                    <h2 class="section-title" data-i18n="aboutTitle">关于我</h2>
                 </div>
                 <div class="about-card">
                     <div class="about-content">
-                        <p class="about-text">
+                        <p class="about-text" data-i18n="aboutText1">
                             我喜欢听音乐！尤其是<span class="highlight">黑暗小英文歌</span>和<span class="highlight">emo中文歌</span>，是纯郁风（）。
                         </p>
-                        <p class="about-text">
+                        <p class="about-text" data-i18n="aboutText2">
                             还喜欢写点小说啥的。喜欢玩游戏，喜欢交朋友～
                         </p>
                         <div class="about-footer">
-                            <span class="about-welcome">欢迎来找我玩呀</span>
+                            <span class="about-welcome" data-i18n="aboutWelcome">欢迎来找我玩呀</span>
                         </div>
                     </div>
                 </div>
@@ -80,7 +88,7 @@
             <section class="links-section">
                 <div class="section-header">
                     <span class="section-number">02</span>
-                    <h2 class="section-title">找到我</h2>
+                    <h2 class="section-title" data-i18n="linksTitle">找到我</h2>
                 </div>
 
                 <div class="links-grid">
@@ -97,11 +105,11 @@
                                 </svg>
                             </div>
                             <h3 class="card-title">QQ</h3>
-                            <p class="card-desc">扫描二维码添加</p>
+                            <p class="card-desc" data-i18n="qqDesc">扫描二维码添加</p>
                             <div class="qr-overlay" id="qrOverlay">
                                 <div class="qr-box" id="qrBox">
                                     <img src="qq.png" alt="QQ二维码" class="qr-image">
-                                    <span class="qr-label">扫码添加好友</span>
+                                    <span class="qr-label" data-i18n="qrLabel">扫码添加好友</span>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +127,7 @@
                                 </svg>
                             </div>
                             <h3 class="card-title">Steam</h3>
-                            <p class="card-desc">点击复制好友代码</p>
+                            <p class="card-desc" data-i18n="steamDesc">点击复制好友代码</p>
                             <div class="code-display" id="steamCode">1057277713</div>
                         </div>
                     </div>
@@ -135,10 +143,10 @@
                                     <line x1="12" y1="17" x2="12" y2="21"></line>
                                 </svg>
                             </div>
-                            <h3 class="card-title">游戏ID</h3>
-                            <p class="card-desc">全平台同名</p>
-                            <div class="game-id">超帅袜狗</div>
-                            <p class="game-note">也许有例外 ;)</p>
+                            <h3 class="card-title" data-i18n="gameTitle">游戏ID</h3>
+                            <p class="card-desc" data-i18n="gameDesc">全平台同名</p>
+                            <div class="game-id" data-i18n="gameId">超帅袜狗</div>
+                            <p class="game-note" data-i18n="gameNote">也许有例外 ;)</p>
                         </div>
                     </div>
                 </div>
@@ -147,14 +155,14 @@
             <!-- 页脚 -->
             <footer class="footer">
                 <div class="footer-line"></div>
-                <p class="footer-text">Made with 💜 by 袜子</p>
+                <p class="footer-text" data-i18n="footer">Made with 💜 by 袜子</p>
             </footer>
         </div>
     </main>
 
     <div class="copy-toast" id="copyToast">
         <span class="toast-icon">✓</span>
-        <span class="toast-text">已复制到剪贴板</span>
+        <span class="toast-text" data-i18n="toastText">已复制到剪贴板</span>
     </div>
 
     <script src="script.js"></script>
