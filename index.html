@@ -3,97 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WaZixwx - 个人主页</title>
+    <title>WaZixwx - 袜子的小窝</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="loader">
-        <div class="loader-lines">
-            <div class="loader-line left"></div>
-            <div class="loader-line right"></div>
+    <canvas id="bgCanvas" class="bg-canvas"></canvas>
+
+    <div class="noise-overlay"></div>
+
+    <div class="loader" id="loader">
+        <div class="loader-text">
+            <span class="loader-char">L</span>
+            <span class="loader-char">o</span>
+            <span class="loader-char">a</span>
+            <span class="loader-char">d</span>
+            <span class="loader-char">i</span>
+            <span class="loader-char">n</span>
+            <span class="loader-char">g</span>
         </div>
-        <div class="loader-percentage">0%</div>
+        <div class="loader-bar">
+            <div class="loader-progress" id="loaderProgress"></div>
+        </div>
     </div>
 
-    <div class="background-grid"></div>
-    <div class="background-dots"></div>
-    <div class="floating-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
-    </div>
-
-    <main class="main-content">
+    <main class="main-content" id="mainContent">
         <div class="container">
-            <section class="profile-section">
-                <div class="avatar-wrapper">
-                    <div class="avatar-ring"></div>
-                    <img src="https://github.com/WaZixwx.png" alt="WaZixwx" class="avatar" id="avatar">
-                </div>
-                <h1 class="name">WaZixwx</h1>
-                <p class="nickname">袜子🧦</p>
-            </section>
-
-            <section class="about-section">
-                <div class="about-card">
-                    <h2 class="section-title">关于我</h2>
-                    <p class="about-text">
-                        我喜欢听音乐！尤其是黑暗小英文歌和emo中文歌，是纯郁风（），还喜欢写点小说啥的。喜欢玩游戏，喜欢交朋友～
-                        <br><br>
-                        欢迎来找我玩呀
-                    </p>
-                </div>
-            </section>
-
-            <section class="links-section">
-                <div class="link-card qq-card" id="qqCard">
-                    <div class="link-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C10.9 6 10 6.9 10 8C10 9.1 10.9 10 12 10C13.1 10 14 9.1 14 8C14 6.9 13.1 6 12 6ZM12 18C9.79 18 8 16.21 8 14C8 11.79 9.79 10 12 10C14.21 10 16 11.79 16 14C16 16.21 14.21 18 12 18Z" fill="currentColor"/>
-                        </svg>
+            <!-- 头部区域 -->
+            <header class="profile-header">
+                <div class="avatar-container">
+                    <div class="avatar-glow"></div>
+                    <div class="avatar-border">
+                        <img src="https://github.com/WaZixwx.png" alt="WaZixwx" class="avatar" id="avatar">
                     </div>
-                    <h3>QQ</h3>
-                    <p>扫描二维码添加</p>
-                    <div class="qr-container" id="qqQr">
-                        <div class="qr-wrapper" id="qrWrapper">
-                            <img src="src/qq.png" alt="QQ二维码" class="qr-image">
+                </div>
+                <div class="profile-info">
+                    <h1 class="name">
+                        <span class="name-main">WaZixwx</span>
+                    </h1>
+                    <p class="nickname">
+                        <span class="nickname-tag">袜子</span>
+                        <span class="nickname-emoji">🧦</span>
+                    </p>
+                    <div class="profile-divider">
+                        <span class="divider-line"></span>
+                        <span class="divider-dot"></span>
+                        <span class="divider-line"></span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 关于我 -->
+            <section class="about-section">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">关于我</h2>
+                </div>
+                <div class="about-card">
+                    <div class="about-content">
+                        <p class="about-text">
+                            我喜欢听音乐！尤其是<span class="highlight">黑暗小英文歌</span>和<span class="highlight">emo中文歌</span>，是纯郁风（）。
+                        </p>
+                        <p class="about-text">
+                            还喜欢写点小说啥的。喜欢玩游戏，喜欢交朋友～
+                        </p>
+                        <div class="about-footer">
+                            <span class="about-welcome">欢迎来找我玩呀</span>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="link-card steam-card" id="steamCard">
-                    <div class="link-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C10.9 6 10 6.9 10 8C10 9.1 10.9 10 12 10C13.1 10 14 9.1 14 8C14 6.9 13.1 6 12 6ZM12 18C9.79 18 8 16.21 8 14C8 11.79 9.79 10 12 10C14.21 10 16 11.79 16 14C16 16.21 14.21 18 12 18Z" fill="currentColor"/>
-                        </svg>
-                    </div>
-                    <h3>Steam</h3>
-                    <p>点击复制好友代码</p>
-                    <div class="steam-code" id="steamCode">1057277713</div>
+            <!-- 联系方式 -->
+            <section class="links-section">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">找到我</h2>
                 </div>
 
-                <div class="link-card game-card">
-                    <div class="link-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C10.9 6 10 6.9 10 8C10 9.1 10.9 10 12 10C13.1 10 14 9.1 14 8C14 6.9 13.1 6 12 6ZM12 18C9.79 18 8 16.21 8 14C8 11.79 9.79 10 12 10C14.21 10 16 11.79 16 14C16 16.21 14.21 18 12 18Z" fill="currentColor"/>
-                        </svg>
+                <div class="links-grid">
+                    <!-- QQ -->
+                    <div class="link-card qq-card" id="qqCard">
+                        <div class="card-glow"></div>
+                        <div class="card-inner">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <h3 class="card-title">QQ</h3>
+                            <p class="card-desc">扫描二维码添加</p>
+                            <div class="qr-overlay" id="qrOverlay">
+                                <div class="qr-box" id="qrBox">
+                                    <img src="qq.png" alt="QQ二维码" class="qr-image">
+                                    <span class="qr-label">扫码添加好友</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h3>游戏ID</h3>
-                    <p>全平台同名</p>
-                    <div class="game-id">超帅袜狗</div>
-                    <p class="game-note">也许有例外 ;)</p>
+
+                    <!-- Steam -->
+                    <div class="link-card steam-card" id="steamCard">
+                        <div class="card-glow"></div>
+                        <div class="card-inner">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M12 16v-4"></path>
+                                    <path d="M12 8h.01"></path>
+                                </svg>
+                            </div>
+                            <h3 class="card-title">Steam</h3>
+                            <p class="card-desc">点击复制好友代码</p>
+                            <div class="code-display" id="steamCode">1057277713</div>
+                        </div>
+                    </div>
+
+                    <!-- 游戏ID -->
+                    <div class="link-card game-card">
+                        <div class="card-glow"></div>
+                        <div class="card-inner">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                            </div>
+                            <h3 class="card-title">游戏ID</h3>
+                            <p class="card-desc">全平台同名</p>
+                            <div class="game-id">超帅袜狗</div>
+                            <p class="game-note">也许有例外 ;)</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-
+            <!-- 页脚 -->
+            <footer class="footer">
+                <div class="footer-line"></div>
+                <p class="footer-text">Made with 💜 by 袜子</p>
+            </footer>
         </div>
     </main>
 
-    <div class="copy-toast" id="copyToast">已复制到剪贴板！</div>
+    <div class="copy-toast" id="copyToast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-text">已复制到剪贴板</span>
+    </div>
 
     <script src="script.js"></script>
 </body>
