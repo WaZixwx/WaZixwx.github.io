@@ -86,7 +86,31 @@ function initLangSwitcher() {
     if (!switcher) return;
 
     const buttons = switcher.querySelectorAll('.lang-btn');
-    let currentLang = 'zh';
+
+    // 检测浏览器首选语言
+    function detectBrowserLang() {
+        const navLang = navigator.language || navigator.userLanguage || 'zh';
+        const langMap = {
+            'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh', 'zh-HK': 'zh',
+            'en': 'en', 'en-US': 'en', 'en-GB': 'en',
+            'ja': 'ja', 'jp': 'ja',
+            'ko': 'ko', 'kr': 'ko'
+        };
+        const primary = navLang.split('-')[0];
+        return langMap[navLang] || langMap[primary] || 'zh';
+    }
+
+    let currentLang = detectBrowserLang();
+
+    // 初始化：应用检测到的语言并高亮对应按钮
+    applyLanguage(currentLang);
+    buttons.forEach(btn => {
+        if (btn.dataset.lang === currentLang) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
 
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
