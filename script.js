@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initCanvasBackground();
     initScrollReveal();
     initSteamCopy();
+    initEmailCopy();
     initLangSwitcher();
     initGlitchText();
-    initQRParallax();
 });
 
 /* ===== 多语言数据 ===== */
@@ -17,8 +17,8 @@ const i18n = {
         aboutText2: '还喜欢写点小说啥的。喜欢玩游戏，喜欢交朋友～',
         aboutWelcome: '欢迎来找我玩呀',
         linksTitle: '找到我',
-        qqDesc: '扫描二维码添加',
-        qrLabel: '扫码添加好友',
+        emailTitle: '邮箱',
+        emailDesc: '点击复制邮箱地址',
         steamDesc: '点击复制好友代码',
         gameTitle: '游戏ID',
         gameDesc: '全平台同名',
@@ -34,8 +34,8 @@ const i18n = {
         aboutText2: 'I also like writing novels. Love gaming and making friends~',
         aboutWelcome: 'Come hang out with me!',
         linksTitle: 'Find Me',
-        qqDesc: 'Scan QR code to add',
-        qrLabel: 'Scan to add friend',
+        emailTitle: 'Email',
+        emailDesc: 'Click to copy email address',
         steamDesc: 'Click to copy friend code',
         gameTitle: 'Game ID',
         gameDesc: 'Same name on all platforms',
@@ -51,8 +51,8 @@ const i18n = {
         aboutText2: '小説を書いたりもする。ゲームが好きで、友達を作るのも好き～',
         aboutWelcome: '遊びに来てね！',
         linksTitle: '連絡先',
-        qqDesc: 'QRコードをスキャン',
-        qrLabel: 'スキャンして友達追加',
+        emailTitle: 'メール',
+        emailDesc: 'クリックしてメールアドレスをコピー',
         steamDesc: 'クリックしてフレンドコードをコピー',
         gameTitle: 'ゲームID',
         gameDesc: '全プラットフォーム同じ名前',
@@ -68,8 +68,8 @@ const i18n = {
         aboutText2: '소설도 좀 써. 게임하는 거랑 친구 사귀는 거 좋아해～',
         aboutWelcome: '놀러 와!',
         linksTitle: '연락처',
-        qqDesc: 'QR 코드 스캔해서 추가',
-        qrLabel: '스캔해서 친구 추가',
+        emailTitle: '이메일',
+        emailDesc: '클릭해서 이메일 주소 복사',
         steamDesc: '클릭해서 친구 코드 복사',
         gameTitle: '게임 ID',
         gameDesc: '모든 플랫폼에서 같은 이름',
@@ -181,29 +181,28 @@ function initGlitchText() {
     setTimeout(randomGlitch, 2000);
 }
 
-/* ===== QQ 卡片视差效果 ===== */
-function initQRParallax() {
-    const qqCard = document.getElementById('qqCard');
-    const qrBox = document.getElementById('qrBox');
+/* ===== 邮箱复制功能 ===== */
+function initEmailCopy() {
+    const emailCard = document.getElementById('emailCard');
+    const emailDisplay = document.getElementById('emailDisplay');
+    const copyToast = document.getElementById('copyToast');
 
-    if (!qqCard || !qrBox) return;
+    if (!emailCard || !emailDisplay || !copyToast) return;
 
-    qqCard.addEventListener('mousemove', (e) => {
-        const rect = qqCard.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+    emailCard.addEventListener('click', () => {
+        const email = emailDisplay.textContent;
 
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateX = (y - centerY) / 12;
-        const rotateY = (centerX - x) / 12;
-
-        qrBox.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1)`;
-    });
-
-    qqCard.addEventListener('mouseleave', () => {
-        qrBox.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(0.9)';
+        navigator.clipboard.writeText(email).then(() => {
+            showToast(copyToast);
+        }).catch(() => {
+            const textArea = document.createElement('textarea');
+            textArea.value = email;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            showToast(copyToast);
+        });
     });
 }
 

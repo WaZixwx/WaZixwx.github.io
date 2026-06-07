@@ -90,26 +90,19 @@
                 </div>
 
                 <div class="links-grid">
-                    <!-- QQ -->
-                    <div class="link-card qq-card" id="qqCard">
+                    <!-- 邮箱 -->
+                    <div class="link-card email-card" id="emailCard">
                         <div class="card-glow"></div>
                         <div class="card-inner">
                             <div class="card-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
                                 </svg>
                             </div>
-                            <h3 class="card-title">QQ</h3>
-                            <p class="card-desc" data-i18n="qqDesc">扫描二维码添加</p>
-                            <div class="qr-overlay" id="qrOverlay">
-                                <div class="qr-box" id="qrBox">
-                                    <img src="qq.png" alt="QQ二维码" class="qr-image">
-                                    <span class="qr-label" data-i18n="qrLabel">扫码添加好友</span>
-                                </div>
-                            </div>
+                            <h3 class="card-title" data-i18n="emailTitle">邮箱</h3>
+                            <p class="card-desc" data-i18n="emailDesc">点击复制邮箱地址</p>
+                            <div class="email-display" id="emailDisplay">wazixwx@wazixwx.com</div>
                         </div>
                     </div>
 
